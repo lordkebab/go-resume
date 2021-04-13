@@ -41,6 +41,9 @@ type ResumeEducation struct {
 	SchoolStartYear    int
 	SchoolEndMonth     string
 	SchoolEndYear      int
+	DegreeType         string
+	Major              string
+	Minor              string
 	CurrentlyAttending bool
 }
 
