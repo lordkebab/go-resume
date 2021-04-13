@@ -16,6 +16,7 @@ type ResumeHeader struct {
 	Name    string
 	Email   string
 	Phone   string
+	Website string
 	AboutMe string
 }
 
@@ -53,12 +54,13 @@ type ResumeSkills struct {
 }
 
 func main() {
-	tmpl := template.Must(template.ParseFiles("page.html"))
+	tmpl := template.Must(template.ParseFiles("templates/index.html"))
 	data := Resume{
 		Header: ResumeHeader{
 			Name:    "Matt Selph",
 			Email:   "matt.selph@gmail.com",
 			Phone:   "(478) 290-2599",
+			Website: "https://matts.io",
 			AboutMe: "Sr. Cloud Solutions Architect for the U.S. Air Force, focused on designing and implementing secure and highly-available cloud architecture.",
 		},
 		Experience: []ResumeExperience{
@@ -119,6 +121,38 @@ func main() {
 				CurrentlyEmployed: false,
 				JobTitle:          "MIS Manager",
 				JobDescription:    "IT Manager for newly-built distribution center supporting over 300 stores in the Southeast region. Lead Oracle DBA and HP-UX administrator, acting as the lone support engineer on call 7x24x365. Managed departmental budget of over $750,000 per year. Supervised hourly employees across two shifts tasked with various Tier 1 support tasks. Maintained 99.95% system uptime.",
+			},
+		},
+		Education: []ResumeEducation{
+			{
+				SchoolName:         "St. Leo University",
+				SchoolCity:         "St. Leo",
+				SchoolState:        "FL",
+				SchoolStartYear:    2007,
+				SchoolEndYear:      2008,
+				Major:              "MBA",
+				CurrentlyAttending: false,
+			},
+			{
+				SchoolName:         "Georgia Southern University",
+				SchoolCity:         "Statesboro",
+				SchoolState:        "GA",
+				SchoolStartYear:    2000,
+				SchoolEndYear:      2002,
+				DegreeType:         "BBA",
+				Major:              "Business Administration",
+				MajorFocus:         "Management Information Systems",
+				CurrentlyAttending: false,
+			},
+			{
+				SchoolName:         "Middle Georgia State University",
+				SchoolCity:         "Cochran",
+				SchoolState:        "GA",
+				SchoolStartYear:    1998,
+				SchoolEndYear:      2000,
+				DegreeType:         "Assoc",
+				Major:              "Business Administration",
+				CurrentlyAttending: false,
 			},
 		},
 	}
