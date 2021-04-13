@@ -1,8 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
-	"net/http"
+	"os"
 )
 
 type Resume struct {
@@ -54,7 +55,7 @@ type ResumeSkills struct {
 }
 
 func main() {
-	tmpl := template.Must(template.ParseFiles("templates/index.html"))
+	// tmpl := template.Must(template.ParseFiles("templates/index.html"))
 	data := Resume{
 		Header: ResumeHeader{
 			Name:    "Matt Selph",
@@ -157,8 +158,27 @@ func main() {
 		},
 	}
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		tmpl.Execute(w, data)
-	})
-	http.ListenAndServe(":8080", nil)
+	out, err := os.Create("templates/main.html")
+	if err != nil {
+		fmt.Println(err)
+	}
+	defer out.Close()
+
+	t, err := template.ParseGlob("templates/*")
+	if err != nil {
+		fmt.Println("Error on parse")
+		fmt.Println(err)
+	}
+
+	err = t.Execute(out, data)
+	if err != nil {
+		fmt.Println("Error on execute")
+		fmt.Println(err)
+	}
+	/*
+		http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+			tmpl.Execute(w, data)
+		})
+		http.ListenAndServe(":8080", nil)
+	*/
 }
