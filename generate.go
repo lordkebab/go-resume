@@ -10,7 +10,7 @@ type Resume struct {
 	Header     ResumeHeader
 	Experience []ResumeExperience
 	Education  []ResumeEducation
-	Skills     []ResumeSkills
+	Skills     []string
 }
 
 type ResumeHeader struct {
@@ -50,12 +50,7 @@ type ResumeEducation struct {
 	CurrentlyAttending bool
 }
 
-type ResumeSkills struct {
-	SkillName string
-}
-
 func main() {
-	// tmpl := template.Must(template.ParseFiles("templates/index.html"))
 	data := Resume{
 		Header: ResumeHeader{
 			Name:    "Matt Selph",
@@ -156,10 +151,14 @@ func main() {
 				CurrentlyAttending: false,
 			},
 		},
+		Skills: []string{
+			"Go", "Python", "AWS", "Docker", "Oracle Database", "Kubernetes",
+		},
 	}
 
-	out, err := os.Create("templates/main.html")
+	out, err := os.Create("index.html")
 	if err != nil {
+		fmt.Println("Error creating file")
 		fmt.Println(err)
 	}
 	defer out.Close()
@@ -175,10 +174,4 @@ func main() {
 		fmt.Println("Error on execute")
 		fmt.Println(err)
 	}
-	/*
-		http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-			tmpl.Execute(w, data)
-		})
-		http.ListenAndServe(":8080", nil)
-	*/
 }
