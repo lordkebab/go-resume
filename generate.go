@@ -60,7 +60,7 @@ func main() {
 
 	// unmarshal the file into a data structure
 	data := map[string]interface{}{}
-	json.Unmarshal(buf, &buf)
+	json.Unmarshal(buf, &data)
 
 	out, err := os.Create("index.html")
 	checkError(err)
