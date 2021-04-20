@@ -113,7 +113,7 @@ func init() {
 	// is called directly, e.g.:
 	// buildCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 	buildCmd.Flags().StringP("input", "i", "resume.json", "Filename with your resume data")
-	buildCmd.Flags().StringP("output", "o", "resume.html", "Filename to output the resume")
+	buildCmd.Flags().StringP("output", "o", "resume.html", "Name of the HTML file to output")
 
 }
 
