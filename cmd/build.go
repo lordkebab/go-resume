@@ -23,6 +23,7 @@ import (
 	"os"
 
 	"github.com/spf13/cobra"
+	"gopkg.in/yaml.v2"
 )
 
 type Resume struct {
@@ -85,7 +86,11 @@ var buildCmd = &cobra.Command{
 
 		// unmarshal the file into a data structure
 		data := map[string]interface{}{}
-		json.Unmarshal(buf, &data)
+		err = json.Unmarshal(buf, &data)
+		if err != nil {
+			// try yaml
+			yaml.Unmarshal(buf, &data)
+		}
 
 		out, err := os.Create(outputFile)
 		checkError(err)
