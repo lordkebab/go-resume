@@ -7,17 +7,23 @@
 			<div class="col"></div>
 		</div>
 		{{range .Experience}}
+		<p> </p>
 		<div class="row">
-			<div class="col"><p class="h6">{{.CompanyName}} ({{.CompanyCity}}, {{.CompanyState}})</p></div>
-			<div class="col"><p class="h6">{{.JobTitle}}</p></div>
+			<div class="col"><p class="h5">{{.CompanyName}} ({{.CompanyCity}}, {{.CompanyState}})</p></div>
+			<div class="col"><p class="h5">{{.JobTitle}}</p></div>
 			{{if .CurrentlyEmployed}}
-			<div class="col"><p class="h6">{{.CompanyStartMonth}} {{.CompanyStartYear}} - Present</p></div>
+			<div class="col"><p class="h5">{{.CompanyStartMonth}} {{.CompanyStartYear}} - Present</p></div>
 			{{else}}
-			<div class="col"><p class="h6">{{.CompanyStartMonth}} {{.CompanyStartYear}} - {{.CompanyEndMonth}} {{.CompanyEndYear}}</p></div>
+			<div class="col"><p class="h5">{{.CompanyStartMonth}} {{.CompanyStartYear}} - {{.CompanyEndMonth}} {{.CompanyEndYear}}</p></div>
 			{{end}}
 		</div>
 		<div class="row">
-			<div class="col-md-auto"><p>{{.JobDescription}}</p></div>
+			<div class="col-md-auto"><p><b>{{.JobDescription}}</b></p></div>
+			<ul>
+			{{range .JobBullets}}
+				<li> {{.}}
+			{{end}}
+			</ul>
 		</div>
 		{{end}}
 		</div>
